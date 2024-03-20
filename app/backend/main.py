@@ -17,11 +17,12 @@ def transport_id(city):
 	result = []
 	for item in data:
 		if item['city'] == city:
-			pass
-	
+			result.append(item)
+
 	if result == []:
 		return 'Not found', 404
-	return jsonify(item)
+	
+	return jsonify(result)
 
 @App.route('/transport_cityes', methods=['GET'])
 def transport_city():
