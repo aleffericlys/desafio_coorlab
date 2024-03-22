@@ -46,5 +46,10 @@
   </script>
 
 <style scoped lang="scss">
-	
+	.imputs {
+		display: flex;
+		justify-content: space-around;
+		margin: 20px;
+		background: #f1f1f1;
+	}
 </style>

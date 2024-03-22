@@ -2,7 +2,7 @@
 
   <div id="sidebarCalc">
     <header>
-      <img class="image" src="../assets/cb.png">
+      <!-- <img class="image" src="../assets/cb.png"> -->
     </header>
     <ul class="nav">
       <li>
@@ -25,7 +25,7 @@ export default {
 
 .image{
   width: 200px;
-  height: 33	px;
+  height: 33px;
   margin: 20px auto;
   display: block;
 }
@@ -42,10 +42,6 @@ export default {
 //   margin-left: -250px;
   overflow-y: auto;
   background: #37474F;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
   box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -57,7 +53,7 @@ export default {
 }
 
 #sidebarCalc .nav a{
-  background: none;
+  background: black;
   border-bottom: 1px solid #455A64;
   color: #CFD8DC;
   font-size: 14px;
