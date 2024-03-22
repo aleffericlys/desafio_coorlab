@@ -1,3 +1,7 @@
 #!/bin/bash
 
-echo "Implemente aqui o script para executar a sua solução"
+pip install flask
+pip insall -U flask-cors
+npm install vue
+
+python3 app/backend/main.py & cd app/frontend && npm run serve

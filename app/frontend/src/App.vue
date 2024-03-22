@@ -1,10 +1,28 @@
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+	<div class="row">
+		<div class=" teste col-sm-3">
+			<Sidebar/>
+		</div>
+		<div class="col-sm-9">
+			
+			<!-- <HelloWorld/> -->
+			<!-- <router-view/> -->
+		</div>
+	</div>
 </template>
+
+<script>
+	import Sidebar from '@/components/Sidebar.vue'
+	import HelloWorld from '@/components/HelloWorld.vue'
+	export default {
+		name: 'App',
+		components: {
+			Sidebar,
+			HelloWorld
+		}
+	}
+</script>
 
 <style lang="scss">
 #app {
@@ -14,7 +32,10 @@
   text-align: center;
   color: #2c3e50;
 }
+.teste {
+  background-color: #090e13;
 
+}
 nav {
   padding: 30px;
 

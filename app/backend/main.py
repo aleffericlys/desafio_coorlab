@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import json
 
 App = Flask('transport')
+App.config.from_object(__name__)
 
+CORS(App)
 with open('app/backend/data.json', 'r') as file:
 	data = json.load(file)
 
@@ -33,4 +36,5 @@ def transport_city():
 	return jsonify(result)
 
 
-App.run(port=3000)
+if __name__ == '__main__':
+	App.run(debug=True, port=3000)
