@@ -1,10 +1,10 @@
 <template>
 	<div class="imputs">
-	  <select v-model="selectedCity">
+	  <select class="select" v-model="selectedCity">
 		<option disabled value="">Select a item</option>
 		<option v-for="city in cities" :key="city">{{ city }}</option>
 	  </select>
-	  <input type="date" v-model="selectedDate"/>
+	  <input class="select" type="date" v-model="selectedDate"/>
 	  <button class="btn btn-primary" @click="searchRoutes">Search</button>
 	</div>
 	<div v-if="routes">
@@ -47,9 +47,13 @@
 
 <style scoped lang="scss">
 	.imputs {
+		height: 90%;
 		display: flex;
+		flex-direction: column;
 		justify-content: space-around;
 		margin: 20px;
-		background: #f1f1f1;
+	}
+	.select{
+		height: 40px;
 	}
 </style>

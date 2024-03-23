@@ -1,16 +1,23 @@
 <template>
 
   <div id="sidebarCalc">
-    <header>
-      <!-- <img class="image" src="../assets/cb.png"> -->
-    </header>
-    <ul class="nav">
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-view-dashboard">Calculadora de viagens</i>
-        </a>
-      </li>
-    </ul>
+	
+	<header class="header">
+		<img class="image" src="../assets/cb.png">
+	</header>
+
+
+	<a href="#">
+	<div class="nav">
+			<span class="material-icons">
+				calculate
+			</span>
+			
+			Calculadora de viagens
+		</div>
+		</a>
+		
+	
   </div>
  
 </template>
@@ -22,11 +29,17 @@ export default {
 </script>
 
 <style scoped lang="scss">	
+.header{
+	border-bottom: #37474F 1px solid;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
 
 .image{
   width: 200px;
   height: 33px;
-  margin: 20px auto;
+  margin-top: 20px;
   display: block;
 }
 
@@ -34,33 +47,52 @@ export default {
 /* Sidebar Styles */
 
 #sidebarCalc {
-  z-index: 1000;
   position: fixed;
-//   left: 250px;
-  width: 250px;
+  width: 20%;
   height: 100%;
-//   margin-left: -250px;
-  overflow-y: auto;
-  background: #37474F;
-  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+  background: #323e44;
+  box-shadow: 4px 0px 4px 2px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
 
-#sidebarCalc .nav{
-//   position: absolute;
-  padding-left: 20px;
-
+#sidebarCalc a{
+	margin-top: 20px;
+	display: flex;
+	// justify-content: center;
+	align-items: center;
+	width: 100%;
+	text-decoration: none;
 }
 
-#sidebarCalc .nav a{
-  background: black;
+.zmdi{
+  font-size: 14px;
+}
+
+#sidebarCalc a .nav{
+width: 100%;
+  background: none;
   border-bottom: 1px solid #455A64;
   color: #CFD8DC;
-  font-size: 14px;
-  padding: 16px 24px;
+  font-size: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+ 
 }
 
-#sidebarCalc .nav a:hover{
+.material-icons{
+padding-right: 10px;
+  font-size: 25px;
+  color: #CFD8DC;
+  
+}
+
+#sidebarCalc a .nav:hover{
   background: none;
   color: #ECEFF1;
 }
