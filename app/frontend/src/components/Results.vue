@@ -5,7 +5,10 @@
 			<div class="detail">
 				<div class="ticket">
 					<div class="icon">
-						<span class="material-icons">
+						<span v-if="route.id === routes[0].id" class="material-icons">
+							schedule
+						</span>
+						<span v-else class="material-icons">
 							volunteer_activism
 						</span>
 					</div>
@@ -22,6 +25,7 @@
 				</div>
 			</div>
 		</div>
+		<button @click="clear()" type="button" class="btn btn-warning">Limpar</button>
 	</div>
 	<span v-else class="mensage">
 		Nenhum dado selecionado
@@ -30,8 +34,11 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
 	name: 'Results',
+	emits: ['clear'],
 	props: {
 		routes: {
 			type: Object,
@@ -40,7 +47,12 @@ export default {
 			}
 		}
 	},
-};
+	methods: {
+		clear() {
+			this.$emit('clear');
+		}
+	}
+});
 
 </script>
 
@@ -49,6 +61,7 @@ export default {
 	height: 100%;
 	width: 100%;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -144,5 +157,14 @@ export default {
 	border-radius: 10px;
 	flex-direction: column;
 	padding-left: 10%;
+}
+
+.btn-warning {
+	width: 20%;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-right: 4%;
+	margin-bottom: 4%;
 }
 </style>

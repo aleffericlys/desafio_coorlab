@@ -52,17 +52,15 @@ export default defineComponent({
 				await fetch(this.api + 'transport/' + this.selectedCity)
 					.then(response => response.json())
 					.then(json => this.routes = json);
-
+					
 				this.$emit('showRoutes', this.routes);
 			}
 		},
 		verify() {
 			if (this.selectedCity === "" || this.selectedDate === "") {
 				this.showModal = true;
-				console.log(this.showModal);
 			} else {
 				this.showModal = false;
-				console.log(this.showModal);
 			}
 		}
 

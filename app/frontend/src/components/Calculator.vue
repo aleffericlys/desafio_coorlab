@@ -15,6 +15,7 @@
 			<div class="results">
 				<Results 
 					:routes="routes"
+					@clear="clear"
 				/>
 			</div>
 
@@ -41,6 +42,9 @@ export default {
 	methods: {
 		showRoutes(routes) {
 			this.routes = routes;
+		},
+		clear() {
+			this.routes = [];
 		}
 	}
 }
