@@ -1,59 +1,134 @@
 <template>
-	<div class="imputs">
-	  <select class="select" v-model="selectedCity">
-		<option disabled value="">Select a item</option>
-		<option v-for="city in cities" :key="city">{{ city }}</option>
-	  </select>
-	  <input class="select" type="date" v-model="selectedDate"/>
-	  <button class="btn btn-primary" @click="searchRoutes">Search</button>
-	</div>
-	<div v-if="routes">
-		<div v-for="route in routes" :key="route.id">
-			<p>{{ route.name }}</p>
-			<p>{{ route.duration }}</p>
-			<p>{{ route.seat }}</p>
-			<p>{{ route.price_confort }}</p>
+	<div class="searItens">
+		<div class="imputs">
+			<div class="title"><span class="material-icons">
+					volunteer_activism
+				</span> Calcule o Valor da Viagem</div>
+			<div class="selectT">
+				<p class="">Destino</p>
+				<select @change="verify()" class="select" value="Select your destination" v-model="selectedCity">
+					<option value="">Selecione a cidade de destino</option>
+					<option v-for="city in cities" :key="city">{{ city }}</option>
+				</select>
+			</div>
+			<div class="dataD">
+				<p class="data">Data</p>
+				<input @change="verify()" class="select" type="date" v-model="selectedDate"/>
+			</div>
+			
+			<AlertModal
+			@searchRoutes="searchRoutes"
+			:showModal="showModal"
+			/>
 		</div>
 	</div>
-  </template>
-  
-  <script>
-  export default {
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+import AlertModal from '@/components/AlertModal.vue'
+
+export default defineComponent({
 	name: 'Search',
-	
+	components: {
+		AlertModal
+	},
+	emits: ['showRoutes'],
 	data() {
-	  return {
-		api: 'http://127.0.0.1:3000/',
-		selectedDate: null,
-		selectedCity: null,
-		cities: [],
-		routes: []
-	  };
+		return {
+			api: 'http://127.0.0.1:3000/',
+			selectedDate: "",
+			selectedCity: "",
+			showModal: true,
+			cities: [],
+			routes: [],
+		};
 	},
 	methods: {
-	  searchRoutes() {
-		fetch(this.api+'transport/'+this.selectedCity)
-		.then(response => response.json())
-		.then(json => this.routes = json);
-	  }
+		async searchRoutes() {
+			if (this.selectedCity === "" || this.selectedDate === "") {
+				this.routes = [];
+			} else {
+				await fetch(this.api + 'transport/' + this.selectedCity)
+					.then(response => response.json())
+					.then(json => this.routes = json);
+
+				this.$emit('showRoutes', this.routes);
+			}
+		},
+		verify() {
+			if (this.selectedCity === "" || this.selectedDate === "") {
+				this.showModal = true;
+				console.log(this.showModal);
+			} else {
+				this.showModal = false;
+				console.log(this.showModal);
+			}
+		}
+
 	},
 	mounted() {
-	  fetch(this.api + 'transport_cityes')
-	  .then(response => response.json())
-	  .then(json => this.cities = json);
+		fetch(this.api + 'transport_cityes')
+			.then(response => response.json())
+			.then(json => this.cities = json);
 	},
-  };
-  </script>
+});
+
+</script>
 
 <style scoped lang="scss">
-	.imputs {
-		height: 90%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		margin: 20px;
-	}
-	.select{
-		height: 40px;
-	}
+.searItens {
+	height: 90%;
+	width: 90%;
+	background: #e4dcdd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3%;
+}
+
+.imputs {
+	margin-left: auto;
+	margin-right: auto;
+	height: 85%;
+	width: 90%;
+	display: flex;
+	background: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.selectT,
+.dataD {
+	flex-direction: column;
+	width: 100%;
+	align-content: center;
+	display: flex;
+}
+
+.imputs p {
+	align-self: self-start;
+	font-size: 100%;
+	margin-bottom: 0px;
+}
+
+.material-icons {
+	font-size: 170%;
+	padding-right: 10px;
+}
+
+.select {
+	height: 40px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+.title {
+	font-size: 140%;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 </style>
