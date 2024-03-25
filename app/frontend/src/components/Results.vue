@@ -21,7 +21,8 @@
 
 				<div class="price">
 					<span class="topic">Preço:</span>
-					<span>{{ route.price_confort }}</span>
+					<span v-if="route.id === routes[0].id">{{ route.price_confort }}</span>
+					<span v-else>{{ route.price_econ }}</span>
 				</div>
 			</div>
 		</div>

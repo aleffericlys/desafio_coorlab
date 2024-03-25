@@ -20,6 +20,32 @@ def transport():
 
 
 def find_city(city):
+	"""
+	Search for all trips to a city
+
+	Args:
+		city (string): Codade que deseja buscar
+
+	Returns:
+		[] if not found any trip to the desired city,
+		bject: have information like price, duration, city of destiny, types of seats. The object have the attributes: 
+
+		"id"              <--- ID
+
+    	"name"           <--- Name of company
+
+    	"price_confort"  <--- value of trip in confort mode
+
+    	"price_econ"     <--- value of trip in economic mode
+
+    	"city"           <--- City of destiny
+
+    	"duration"       <--- Duration of trip
+
+    	"seat"           <--- seat (economic mode)
+
+    	"bed"            <--- sleeper seats (confort mode)
+	"""
 	result = []
 	for item in data:
 		if item['city'] == city:
@@ -30,6 +56,32 @@ def find_city(city):
 
 
 def find_cheapest(city):
+	"""
+	Search for the cheapest option for a city
+
+	Args:
+		city (string): Codade que deseja buscar
+
+	Returns:
+		[] if not found any trip to the desired city,
+		bject: have information like price, duration, city of destiny, types of seats. The object have the attributes: 
+
+		"id"              <--- ID
+
+    	"name"           <--- Name of company
+
+    	"price_confort"  <--- value of trip in confort mode
+
+    	"price_econ"     <--- value of trip in economic mode
+
+    	"city"           <--- City of destiny
+
+    	"duration"       <--- Duration of trip
+
+    	"seat"           <--- seat (economic mode)
+
+    	"bed"            <--- sleeper seats (confort mode)
+	"""
 	routes = find_city(city)
 	if len(routes) == 0:
 		return []
@@ -41,6 +93,32 @@ def find_cheapest(city):
 		return cheapest
 
 def find_fastest(city):
+	"""
+	Search for the fastest option for a city
+
+	Args:
+		city (string): Codade que deseja buscar
+
+	Returns:
+		[] if not found any trip to the desired city,
+		bject: have information like price, duration, city of destiny, types of seats. The object have the attributes: 
+
+		"id"              <--- ID
+
+    	"name"           <--- Name of company
+
+    	"price_confort"  <--- value of trip in confort mode
+
+    	"price_econ"     <--- value of trip in economic mode
+
+    	"city"           <--- City of destiny
+
+    	"duration"       <--- Duration of trip
+
+    	"seat"           <--- seat (economic mode)
+
+    	"bed"            <--- sleeper seats (confort mode)
+	"""
 	routes = find_city(city)
 	if len(routes) == 0:
 		return []
@@ -57,13 +135,21 @@ def transport_id(city):
 	fastest = find_fastest(city)
 	cheapest = find_cheapest(city)
 
-	if fastest != []:
-		result.append(fastest) 
-	
-	if cheapest != []:
-		if cheapest != fastest:
+	if fastest != [] and cheapest != []:
+
+		if fastest == cheapest:
+			result.append(fastest)
+		elif int(fastest['duration'].replace('h', '')) == int(cheapest['duration'].replace('h', '')):
 			result.append(cheapest)
-	
+		else:
+			result.append(fastest)
+			result.append(cheapest)
+	else:
+		if fastest != []:
+			result.append(fastest)
+		elif cheapest != []:
+			result.append(cheapest)
+
 	if result == []:
 		return 'Not found', 404
 	else:
