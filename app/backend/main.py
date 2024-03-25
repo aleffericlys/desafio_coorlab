@@ -7,9 +7,7 @@ App.config.from_object(__name__)
 
 CORS(App)
 
-# with open('app/backend/data.json', 'r') as file:
-
-with open('data.json', 'r') as file:
+with open('app/backend/data.json', 'r') as file:
 	data = json.load(file)
 
 data = data['transport']
